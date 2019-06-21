@@ -1,0 +1,16 @@
+steps:
+    
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/GoogleCloudPlatform/appengine-try-java.git']
+
+- name: 'gcr.io/cloud-builders/mvn'
+  args:
+  - 'sonar:sonar'
+  - '-Dsonar.projectKey=demo-mahesh'
+  - '-Dsonar.organization=demogcp2018-github'
+  - '-Dsonar.host.url=https://sonarcloud.io'
+  - '-Dsonar.login=52f0bffa6682f9c4d56502c42d37b5de75645159'
+
+- name: 'gcr.io/cloud-builders/mvn'
+  args: ['-DskipTests', 'clean', 'install']
+  
